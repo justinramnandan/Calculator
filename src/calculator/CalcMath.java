@@ -8,6 +8,88 @@ import java.util.Stack;
 
 public class CalcMath {
 	
+	public static String hexaConversion(String expression)
+	{
+		StringBuilder sb= new StringBuilder();
+		int number= Integer.parseInt(expression);
+		int remainder;
+		String hexaDecimal;
+		
+		while(number!=0)
+		{
+			remainder= number%16;
+			
+			if(remainder >=10)
+			{
+				switch (remainder)
+				{
+				case 10:
+					sb.append("A");
+					break;
+				case 11:
+					sb.append("B");
+					break;
+				case 12:
+					sb.append("C");
+					break;
+				case 13:
+					sb.append("D");
+					break;
+				case 14:
+					sb.append("E");
+					break;
+				case 15:
+					sb.append("F");
+				}
+			}
+			else
+			{
+				sb.append(Integer.toString(remainder));
+			}
+			number= number/16;
+			
+		}
+		hexaDecimal= sb.toString();
+		return hexaDecimal;
+	}
+	
+	
+	public static String quadriaticFormulaPositive(double a, double b, double c)
+	{
+		//b+sqrt b^2 -4ac
+		
+		
+		
+		double bsquared= Math.pow(b, 2);
+		double complex= Math.sqrt(bsquared-4*a*c);
+		
+		double quadriatic= (b+ complex)/(2*a);
+		
+		
+		String	quadriaticToString= Double.toString(quadriatic);
+		
+		return quadriaticToString;
+		
+		
+	}
+	
+	public static String quadriaticFormulaNegative(double a, double b, double c)
+	{
+		
+		
+		
+		double quadriatic = (b - Math.sqrt(Math.pow(b, 2) - 4*a*c))/(2*a); 
+		
+		String	quadriaticToString= Double.toString(quadriatic);
+		
+		return quadriaticToString;
+		
+		
+	}
+	
+	
+	
+	
 	public static String postFixConversion(String expression)
 	{
 	  String[] expression1=expression.split(" ");

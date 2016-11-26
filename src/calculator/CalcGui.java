@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.util.Stack;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -14,7 +15,8 @@ import javax.swing.JTextField;
 
 public class CalcGui extends JPanel {
 	JTextField display;
-	JButton one, two, three, four, five, six, seven, eight, nine, equal, multiply, divide, subtract, add, clear;
+	JButton one, two, three, four, five, six, seven, eight, nine,zero, equal, multiply, 
+	divide, quadriatic,convertToBinary, subtract, add, clear,hexaDecimal;
     
 	/**
 	 * This function takes what is in the display and adds spaces in the appropriate places
@@ -72,22 +74,31 @@ public class CalcGui extends JPanel {
 		seven = new JButton("7");
 		eight = new JButton("8");
 		nine = new JButton("9");
+		zero= new JButton("0");
 		equal = new JButton("=");
 		multiply = new JButton("*");
 		divide = new JButton("/");
 		subtract = new JButton("-");
 		add = new JButton("+");
-
-	display.setPreferredSize(new Dimension(35,35));
+		quadriatic = new JButton("Quadriatic");
+		convertToBinary = new JButton("Binary");
+		hexaDecimal= new JButton("HexaDecimal");
 		
-		JButton arr[] = {clear,one,two,three, four ,five, six,seven,eight, nine ,equal,multiply,divide,subtract,add};
+	display.setPreferredSize(new Dimension(35,35));
+	quadriatic.setPreferredSize(new Dimension(100,100));	
+	convertToBinary.setPreferredSize(new Dimension(100,100));
+	hexaDecimal.setPreferredSize(new Dimension (100,100));
+	
+		JButton arr[] = {clear,one,two,three, four ,five, six,seven,eight, nine , zero, equal,multiply,divide,subtract,add};
 		
 		
 		for(int i=0; i<arr.length;i++)
 		{
 			arr[i].setPreferredSize(new Dimension(75,75));
 		}
-		
+		hexaDecimal.addActionListener(new ButtonListener());
+		convertToBinary.addActionListener(new ButtonListener());
+		quadriatic.addActionListener(new ButtonListener());
 		clear.addActionListener(new ButtonListener());
 		one.addActionListener(new ButtonListener());
 		two.addActionListener(new ButtonListener());
@@ -98,6 +109,7 @@ public class CalcGui extends JPanel {
 		seven.addActionListener(new ButtonListener());
 		eight.addActionListener(new ButtonListener());
 		nine.addActionListener(new ButtonListener());
+		zero.addActionListener(new ButtonListener());
 		equal.addActionListener(new ButtonListener());
 		multiply.addActionListener(new ButtonListener());
 		divide.addActionListener(new ButtonListener());
@@ -116,11 +128,15 @@ public class CalcGui extends JPanel {
 		add(seven);
 		add(eight);
 		add(nine);
+		add(zero);
 		add(multiply);
 		add(divide);
 		add(subtract);
 		add(add);
 		add(equal);
+		add(quadriatic);
+		add(convertToBinary);
+		add(hexaDecimal);
 		
 	}
 
@@ -175,6 +191,11 @@ public class CalcGui extends JPanel {
 				addtoDisplay("9");
 			}
 
+			else if(event.getSource()==zero)
+			{
+				addtoDisplay("0");
+			}
+			
 			else if (event.getSource() == multiply) {
 				
 				addtoDisplay("*");
@@ -191,7 +212,29 @@ public class CalcGui extends JPanel {
 				
 				addtoDisplay("+");
 				
-			} else if (event.getSource() == equal) {
+			} 
+			else if(event.getSource()==hexaDecimal)
+			{
+				display.setText(CalcMath.hexaConversion(display.getText()));
+			}
+			
+			
+			else if(event.getSource()==convertToBinary)
+			{
+				display.setText(CalcMath.convertToBinary(display.getText()));
+			}
+			
+			else if (event.getSource()==quadriatic)
+			{
+				JFrame quadFrame= new JFrame();
+				QuadGui gui = new QuadGui();
+				quadFrame.setSize(300,500);
+				quadFrame.setTitle("Quadriatic Formula");
+				quadFrame.setVisible(true);
+				quadFrame.getContentPane().add(gui);
+			}
+			
+			else if (event.getSource() == equal) {
 				String store1 = display.getText().replaceAll("\\s", "");
 				char[] store1toArr = store1.toCharArray();
 

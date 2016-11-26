@@ -15,11 +15,11 @@ public class CalcDriver  {
 		
 		frame.setTitle("My Calculator");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(300, 500);
+		frame.setSize(300, 600);
 		frame.setVisible(true);
 		frame.getContentPane().add(calc);
 		
-		
+	
 		
 	
 	}
